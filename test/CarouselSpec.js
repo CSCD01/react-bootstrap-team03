@@ -133,7 +133,7 @@ describe('<Carousel>', () => {
   it('should move right if right arrow is clicked in the last position', () => {
     const lastPossibleIndex = items.length - 1;
     function onSelect(index, direction, event) {
-      expect(index).to.equal(lastPossibleIndex);
+      expect(index).to.equal(0);
       expect(direction).to.equal('next');
       expect(event).to.exist;
     }
