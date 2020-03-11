@@ -15,4 +15,10 @@ describe('<TabPane>', () => {
       'div.tab-pane.active[aria-hidden=false]',
     );
   });
+
+  it('should retain transition if unmountOnExit is true', () => {
+    mount(<TabPane unmountOnExit>Item content</TabPane>).assertSingle(
+      'div.tab-pane.unmountOnExit[aria-hidden=true]',
+    );
+  });
 });
