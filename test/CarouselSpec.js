@@ -111,6 +111,45 @@ describe('<Carousel>', () => {
       .simulate('click');
   });
 
+  it('should move left if left arrow is clicked in the first position', () => {
+    function onSelect(index, direction, event) {
+      const lastPossibleIndex = items.length - 1;
+      expect(index).to.equal(lastPossibleIndex);
+      expect(direction).to.equal('prev');
+      expect(event).to.exist;
+    }
+    const wrapper = mount(
+      <Carousel activeIndex={0} onSelect={onSelect}>
+        {items}
+      </Carousel>,
+    );
+
+    wrapper
+      .find('.carousel-indicators li')
+      .first()
+      .simulate('click');
+  });
+
+  it('should move right if right arrow is clicked in the last position', () => {
+    const lastPossibleIndex = items.length - 1;
+    function onSelect(index, direction, event) {
+      expect(index).to.equal(lastPossibleIndex);
+      expect(direction).to.equal('next');
+      expect(event).to.exist;
+    }
+
+    const wrapper = mount(
+      <Carousel activeIndex={lastPossibleIndex} onSelect={onSelect}>
+        {items}
+      </Carousel>,
+    );
+
+    wrapper
+      .find('.carousel-indicators li')
+      .last()
+      .simulate('click');
+  });
+
   describe('Buttons and labels with and without wrapping', () => {
     it('should show back button control on the first image if wrap is true', () => {
       const wrapper = mount(
