@@ -136,7 +136,7 @@ const TabPane = React.forwardRef((props, ref) => {
 
   const prefix = useBootstrapPrefix(bsPrefix, 'tab-pane');
 
-  if (!active && unmountOnExit) return null;
+  if (!(active || Transition) && unmountOnExit) return null;
 
   let pane = (
     <Component
